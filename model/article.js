@@ -18,7 +18,8 @@ const articleSchema = new mongoose.Schema({
         required:[true,'请填写作者']
     },
     publishDate:{
-        type:Date,
+        // type:Date,
+        type:String,
         default:Date.now,
     },
     cover:{

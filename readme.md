@@ -49,3 +49,30 @@ form.parse(req,(err,fields,files)=>{
     //fields 储存普通请求参数
     // files 储存上传文件信息
 })
+
+#文件读取（FileReader()，内置构造函数）  如图片
+1. 用法
+var reader = new FileReader();
+reader.readAsDataURL("文件");//读取文件（二进制）异步方法
+reader.onload = function(){
+    <!--reader.result 是读取文件的结果 -->
+}
+
+#dateformat (第三方插件  日期格式化工具)  npm i dateformat
+dateFormat(date , 'yyyy-mm-dd')
+
+#实现分页，使用mongoose-sex-page插件
+1. 用法
+const pagination = require('mongoose-sex-page')
+<!-- display显示多少个页码 exec查询条件完成，向后台发起请求 -->
+pagination(集合构造函数).page(1).size(10).display(8).exec() 
+{
+    page:1 , //当前页
+    size: 2 , //每页显示的数量
+    total:20, //总数
+    records:[{}], //查询出来的数据
+    pages:4 , //总的页数
+    display:[1,2,3,4] , //制定显示的页码
+}
+
+#node热更新代码  npm install -g supervisor   使用supervisor代替node执行命令

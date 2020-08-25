@@ -25,7 +25,7 @@ function aesDecrypto(data,key){
  * res 重定向页面
  * 可以通过异步函数（async和await）获取信息，必须加try catch , 也可以通过then和catch来捕获信息 
  */
-async function enJoi(formData,regData,res ,next){
+async function enJoi(formData,regData,path ,next){
     try {
         // 验证通过
     //   const valid = await Joi.validate(formData,regData) 
@@ -33,8 +33,12 @@ async function enJoi(formData,regData,res ,next){
       
     } catch (error) {
         // 验证不通过，重定向页面
+        console.log(error.message,'error');
+        
     //   return  res.redirect('/admin/user-edit?message='+error.message)
-    return next(JSON.stringify({path:'/admin/user-edit',message:error.message}))
+    // return next(JSON.stringify({path:'/admin/user-edit',message:error.message}))
+    return next(JSON.stringify({path:path,message:error.message}))
+    // return  next
     }
 }
 

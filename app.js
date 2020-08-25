@@ -9,7 +9,10 @@ const express = require('express')
 let path = require('path')
 const  bodyParser = require('body-parser')
 const expressSession = require('express-session')
-// 
+// 日期格式插件
+const dateFormat = require('dateformat')
+// 导入art模板引擎
+const template = require('art-template')
 
 
 // 创建网站服务器
@@ -40,6 +43,8 @@ app.set('views',path.join(__dirname,'views'))
 app.set('view engine','art')
 // 当渲染后缀为art时，使用的模板引擎
 app.engine('art',require('express-art-template'))
+// 全局引用日期格式化插件
+template.defaults.imports.dateFormat = dateFormat 
 // 开放静态资源文件
 app.use(express.static(path.join(__dirname,'public')))
 // 配置session

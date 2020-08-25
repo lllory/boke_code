@@ -39,6 +39,9 @@ admin.get('/article-edit',require('./admin/articalEditPage'))
 // 实现文章添加功能
 admin.post('/article-add',require('./admin/article-add'))
 
+// 实现文章修改功能
+admin.post('/article-modify',require('./admin/article-modify'))
+
 
 //将路由对象暴露出去
 module.exports = admin

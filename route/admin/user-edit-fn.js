@@ -12,7 +12,9 @@ module.exports = async (req, res,next) => {
             role: Joi.string().valid('normal', 'admin').required().error(new Error('角色值非法')),
             state: Joi.number().valid(0, 1).required().error(new Error('状态值非法'))
         }
-      let errorResult =await  moduleFun.enJoi(req.body, schema, res ,next)
+
+        // let errorResult =await  moduleFun.enJoi(req.body, schema, res ,next)
+        let errorResult =await  moduleFun.enJoi(req.body, schema, '/admin/user-edit' ,next)            
       console.log(errorResult,'errorResult');
       
         if(!errorResult) return

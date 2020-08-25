@@ -3,7 +3,7 @@ const {
 } = require('../../model/user')
 module.exports  =async (req, res) => {
     // 接收客户端传递过来的当前页参数
-    let page = req.query.page || 1
+    let page = req.query.page || 1 
     
     // 全局属性  标识  表示当前访问的是用户管理页面  给侧边栏添加选中状态
     req.app.locals.currentLink = 'user'
