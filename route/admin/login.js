@@ -32,10 +32,18 @@ module.exports = async (req, res) => {
         if (isValid) {
             // 将用户名存储在请求
             req.session.username = user.username
+            req.session._id = user._id
             // 获取登录信息 
             req.app.locals.userInfo = user
+            req.session.role = user.role
             // res.send('登录成功')
             //    res.render('admin/user')
+            // 對用戶角色判斷
+            if(user.role == 'admin'){
+                res.redirect('/admin/user')
+            }else{
+                res.redirect('/home/')
+            }
             // 重定向用户列表页面
             res.redirect('user')
         } else {

@@ -33,7 +33,7 @@
                 <label for="exampleInputFile">文章封面</label>
                 <input type="file" name="cover" id="file" multiple >
                 <div class="thumbnail-waper">
-                    <img class="img-thumbnail" src="{{path+articles.cover}}" id="preview">
+                    <img class="img-thumbnail" src="{{articles.cover}}" id="preview">
                 </div>
             </div>
             <div class="form-group">

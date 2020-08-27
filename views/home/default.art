@@ -1,36 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>首页</title>
-	<link rel="stylesheet" href="css/base.css">
-	<link rel="stylesheet" href="css/index.css">
-</head>
-<body>
+{{extend './common/layout.art'}}
+
+{{block 'link'}}
+<link rel="stylesheet" href="/home/css/index.css">
+{{/block}}
+
+{{block 'main'}}
 	<!-- 头部框架开始 -->
-	<div class="header">
-		<div class="w1100">
-			<!-- 网站logo开始 -->
-			<h1 class="logo fl">
-				<a href="default.html"><img src="images/logo.png" alt="黑马程序员"></a>
-			</h1>
-			<!-- 网站logo结束 -->
-			<!-- 网站导航开始 -->
-			<ul class="navigation fr">
-				<li>
-					<a class="active" href="index.html">首页</a>
-				</li>
-				<li>
-					<a href="#">登录</a>
-				</li>
-			</ul>
-			<!-- 网站导航结束 -->
-		</div>
-	</div>
+	{{include './common/header.art'}}
 	<!-- 头部框架结束 -->
 	<!-- 文章列表开始 -->
 	<ul class="list w1100">
-		<li class="fl">
+		{{each articles.records}}
+			<li class="{{$index % 2 == 0 ? 'fl' :'fr'}}">
+					<a href="/home/article?id={{@$value._id}}" class="thumbnail">
+						<img src="{{$value.cover}}">
+					</a>
+					<div class="content">
+						<a class="article-title" href="/home/article?id={{@$value._id}}">{{$value.title}}</a>
+						<div class="article-info">
+							<span class="author">{{$value.author.username}}</span>
+							<span>{{$value.publishDate}}</span>
+						</div>
+						<div class="brief">
+							{{@$value.content.replace(/<[^>]+>/g,'').substr(0,100) + '...'}}
+						</div>
+					</div>
+				</li>
+				{{/each}}
+		<!-- <li class="fl">
 			<a href="article.html" class="thumbnail">
 				<img src="images/1.jpg">
 			</a>
@@ -122,20 +119,27 @@
 					关于品牌设计Brand Design 首选我们需要了解什么是品牌？ 现代营销学之父菲利普.科特勒在《市场营销学》中的定义，品牌是销售者向购买者长期提供的一组特定的特点、利益和服务，是一个...
 				</div>
 			</div>
-		</li>
+		</li> -->
 	</ul>
 	<!-- 文章列表结束 -->
 
 	<!-- 分页开始 -->
+
 	<div class="page w1100">
-		<a href="#">上一页</a>
-		<a href="#" class="active">1</a>
+		{{if articles.page > 1}}
+		<a href="/home/?page={{articles.page - 1}}" >上一页</a>
+		{{/if}}
+		{{each articles.display}}
+		<a href="/home/?page={{$value}}" class="{{$value ==articles.page ? 'active' : ''}}  ">{{$value}}</a>
+		{{/each}}
+		<!-- <a href="#" class="active">1</a>
 		<a href="#">2</a>
 		<a href="#">3</a>
 		<a href="#">4</a>
-		<a href="#">5</a>
-		<a href="#">下一页</a>
+		<a href="#">5</a> -->
+		{{if articles.page <  articles.pages}}
+		<a href="/home/?page={{articles.page - 0 + 1}}">下一页</a>
+		{{/if}}
 	</div>
 	<!-- 分页结束 -->
-</body>
-</html>
+{{/block}}

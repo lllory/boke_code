@@ -5,11 +5,13 @@ const express = require('express')
 
 const home = express.Router()
 
-// 创建文章列表页面路由
-// home.get('/article',require('./admin/articalPage'))
+// 博客前台首页的展示页面
+home.get('/',require('./home/index'))
+// 博客前台文章展示页面
+home.get('/article',require('./home/article'))
 
-// 创建文章编辑页面路由
-// home.get('/article-edit',require('./home/articalEditPage'))
+// 创建文章评论接口
+home.post('/article-comment',require('./home/article-comment'))
 
 //将路由对象暴露出去
 module.exports = home

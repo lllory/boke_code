@@ -76,3 +76,15 @@ pagination(集合构造函数).page(1).size(10).display(8).exec()
 }
 
 #node热更新代码  npm install -g supervisor   使用supervisor代替node执行命令
+
+#将数据信息打印到控制台中   npm i morgan
+
+#模块config  读取文件之前会自动判断当前环境   不用手动设置了
+1. npm install config
+2. 项目的根目录下面新建config文件夹
+3. 在config文件夹下面新建default.json 、 development.json 、 profuction.json文件
+4. 引入模块  ，  模块内部提供的get方法获取配置信息
+##将敏感信息存储在环境变量中
+1. 在config文件夹下面新建custom-environment-variables.json文件，将敏感的配置信息放在这个文件里面
+2. 在环境变量配置了数据库密码的变量为APP_PWD ，值为itcase ,在文件夹中{"db":{"pwd":"APP_PWD"}}
+
